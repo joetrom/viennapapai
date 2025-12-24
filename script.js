@@ -130,6 +130,7 @@ async function renderFunction(lugares, color) {
 renderFunction(lugaresTipo1, "green");
 renderFunction(lugaresTipo2, "red");
 renderFunction([["International Busterminal", ""]], "yellow");
+renderFunction([["Holiday Hostel", ""]], "yellow");
 
 // ===============================
 // ADICIONANDO MANUALMENTE UM PONTO FORA DO GEOCODER
