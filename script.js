@@ -119,17 +119,17 @@ async function renderFunction(lugares, color) {
       fillOpacity: 0.9
     }).addTo(map);
 
-    // Tooltip só no hover
+    // Tooltip no hover
     marker.bindTooltip(place[0], {
       direction: "top",
       opacity: 0.9,
       sticky: true
     });
 
-    // Popup fixo ao clicar
+    // Popup no clique (fixo)
     marker.bindPopup(`
-      <h2>${place[0]}, </h2>
-      <h3>${place[1]}, </h3>
+      <h2>${place[0]}</h2>
+      <h3>${place[1]}</h3>
       <a href="${gmaps}" target="_blank">
         Abrir no Google Maps<br>
         ${place[0]}
@@ -141,14 +141,13 @@ async function renderFunction(lugares, color) {
 renderFunction(lugaresTipo1, "green");
 renderFunction(lugaresTipo2, "red");
 renderFunction([["International Busterminal", ""]], "yellow");
-renderFunction([["Holiday Hostel", ""]], "yellow");
+renderFunction([["Holiday Hostel", ""]], "purple");
 
 // ===============================
-// ADICIONANDO MANUALMENTE UM PONTO FORA DO GEOCODER
+// ADICIONANDO MANUALMENTE UM PONTO
 // ===============================
 const lat = 48.198329;
 const lon = 16.332843;
-const gmaps = `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`;
 
 const hostel = L.circleMarker([lat, lon], {
   color: "yellow",
@@ -157,17 +156,63 @@ const hostel = L.circleMarker([lat, lon], {
   fillOpacity: 0.9
 }).addTo(map);
 
-// Tooltip no hover
 hostel.bindTooltip("Hostelll", {
   direction: "top",
   opacity: 0.9,
   sticky: true
 });
 
-// Popup fixo no clique
 hostel.bindPopup(`
-  <h2>HOSTEL</h2>
-  <a href="${gmaps}" target="_blank">
-    Abrir no Google Maps<br>
+  <h2>Brazilian Hostel</h2>
+  <a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank">
+    Abrir no Google Maps
   </a>
 `);
+
+
+// ===============================
+// 🚩 MINHA LOCALIZAÇÃO
+// ===============================
+if ("geolocation" in navigator) {
+
+  navigator.geolocation.getCurrentPosition(
+    (pos) => {
+      const myLat = pos.coords.latitude;
+      const myLon = pos.coords.longitude;
+
+      const gmaps = `https://www.google.com/maps/search/?api=1&query=${myLat},${myLon}`;
+
+      const myMarker = L.circleMarker([myLat, myLon], {
+        color: "blue",
+        radius: 7,
+        weight: 3,
+        fillOpacity: 0.9
+      }).addTo(map);
+
+      myMarker.bindTooltip("Você está aqui 😄", {
+        direction: "top",
+        opacity: 0.9,
+        sticky: true
+      });
+
+      myMarker.bindPopup(`
+        <h2>Minha localização</h2>
+        <a href="${gmaps}" target="_blank">
+          Abrir no Google Maps
+        </a>
+      `);
+
+      // Centraliza sem quebrar o limite do mapa
+      map.panTo([myLat, myLon]);
+    },
+
+    (err) => {
+      console.warn("Localização recusada:", err);
+    },
+
+    { enableHighAccuracy: true }
+  );
+
+} else {
+  console.warn("Geolocalização não suportada");
+}
