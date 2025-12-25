@@ -69,27 +69,37 @@ async function geocode(name) {
 // PONTOS DE INTERESSE
 // ===============================
 const lugaresTipo1 = [
-  ["Justizpalast Wien", ""],
-  ["Austrian Parliament Building", ""],
-  ["Volksgarten Wien", ""],
-  ["Votivkirche Wien", ""],
-  ["Palais Kinsky Wien", ""],
-  ["Palais Ferstel Wien", ""],
-  ["Peterskirche Wien", ""],
-  ["Franz von Assisi Kirche Wien", ""],
-  ["Hundertwasserhaus Wien", ""],
-  ["Schönbrunn Palace", ""],
-  ["Stephansdom Wien", ""],
+  ["Schönbrunn Park", "PARK OF THE PAID MUSEUM, OPEN 6:30-21:00"],
+  ["Burggarten", "GARTEN, OPEN 6:00-22:00"],
+  ["Justizpalast Wien", "MUSEUM, OPEN 07:30-15:30"],
+  ["Austrian Parliament Building", "FREE GUIDED TOURS, OPEN 9:00-17:00"],
+  ["Volksgarten Wien", "GARTEN, OPEN 6:00-21:00"],
+  ["Rathaus Wien", "CASTLE, OPEN 7:30-17:00"],
+  ["Votivkirche Wien", "CASTLE, OPEN 9:00-18:00"],
+  ["Palais Kinsky Wien", "CASTLE, OPEN 10:00-18:00"],
+  ["Ferstel Passage", "CASTLE, OPEN 10:00-20:00"],
+  ["Palais Ferstel Wien", "CASTLE, OPEN 10:00-20:00"],
+  ["Palais Equitable", "CASTLE, OPEN 8:00-18:00"],
+  ["Peterskirche Wien", "CASTLE, OPEN 7:00-20:00"],
+  ["Jesuiterkirche", "CHURCH, OPEN 7:00-21:00"],
+  ["Franz von Assisi Kirche Wien", "CHURCH, OPEN 8:00-20:00"],
+  ["Hundertwasserhaus Wien", "FUNKY PLACE, OPEN 24 HOURS"],
+  ["Stephansdom", "CHURCH, OPEN 6:00-22:00"],
 ];
 
 const lugaresTipo2 = [
-  ["Austrian National Library", ""],
-  ["Kunsthistorisches Museum Wien", ""],
-  ["Butterfly House Vienna", ""],
-  ["Naturhistorisches Museum Wien", ""],
-  ["Karlskirche Wien", ""],
-  ["Albertina Museum Wien", ""],
-  ["Otto Wagner Villa Wien", ""],
+  ["Schönbrunn Palace", "25 EUROS (34 TO SEE EVERYTHING), OPEN 8:30-17:30"],
+  ["Hofburg Palace", "20 EUROS, OPEN 9:00-17:30"],
+  ["National Library of Austria", "9 EUROS, OPEN 10:00-18:00"],
+  ["Belvedere Palace", "22 EUROS BOTH LOCATIONS, OPEN 10:00-18:00"],
+  ["Secession Building Wien", "9 EUROS, OPEN 10:00-18:00"],
+  ["Leopold Museum Wien", "15 EUROS, OPEN 10:00-18:00"],
+  ["Kunsthistorisches Museum Wien", "11 EUROS F/ STUDENTS, OPEN 10:00-18:00"],
+  ["Butterfly House Vienna", "5 EUROS F/ STUDENTS, OPEN 10:00-16:45"],
+  ["Naturhistorisches Museum Wien", "7 EUROS F/ STUDENTS, OPEN 9:00-18:30"],
+  ["Karlskirche Wien", "5 EUROS F/ STUDENTS, OPEN 9:00-18:00"],
+  ["Albertina Museum Wien", "11 EUROS F/ STUDENTS, OPEN 10:00-18:00"],
+  ["Otto Wagner Villa Wien", "7 EUROS F/ STUDENTS, OPEN 10:00-17:00"],
 ];
 
 // ===============================
@@ -119,6 +129,7 @@ async function renderFunction(lugares, color) {
     // Popup fixo ao clicar
     marker.bindPopup(`
       <h2>${place[0]}, </h2>
+      <h3>${place[1]}, </h3>
       <a href="${gmaps}" target="_blank">
         Abrir no Google Maps<br>
         ${place[0]}
